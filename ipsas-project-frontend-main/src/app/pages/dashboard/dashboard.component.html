@@ -1,0 +1,154 @@
+<h1>Dashboard</h1>
+
+
+<h2>Produits en repture de stock</h2>
+<nz-list nzGrid>
+  <div nz-row
+       [nzGutter]="16">
+    <div nz-col
+         [nzXXl]="8"
+         [nzXl]="4"
+         [nzLg]="6"
+         [nzMd]="6"
+         [nzSm]="12"
+         [nzXs]="24"
+         *ngFor="let item of produits">
+      <nz-list-item>
+        <nz-card [nzTitle]="item.nom">{{item.designation}}</nz-card>
+      </nz-list-item>
+    </div>
+  </div>
+</nz-list>
+
+
+<h2>Factures Payées</h2>
+<nz-list nzGrid>
+  <div nz-row
+       [nzGutter]="16">
+    <div nz-col
+         [nzXXl]="8"
+         [nzXl]="4"
+         [nzLg]="6"
+         [nzMd]="6"
+         [nzSm]="12"
+         [nzXs]="24"
+         *ngFor="let item of listePayee">
+      <nz-list-item>
+        <nz-card [nzTitle]="item.note">{{item.date}}</nz-card>
+      </nz-list-item>
+    </div>
+  </div>
+</nz-list>
+
+
+<h2>Factures Non Payées</h2>
+<nz-list nzGrid>
+  <div nz-row
+       [nzGutter]="16">
+    <div nz-col
+         [nzXXl]="8"
+         [nzXl]="4"
+         [nzLg]="6"
+         [nzMd]="6"
+         [nzSm]="12"
+         [nzXs]="24"
+         *ngFor="let item of listeNonPayee">
+      <nz-list-item>
+        <nz-card [nzTitle]="item.note">{{item.date}}</nz-card>
+      </nz-list-item>
+    </div>
+  </div>
+</nz-list>
+
+
+<h2>Par client</h2>
+
+
+<nz-select nzShowSearch
+           nzAllowClear
+           nzPlaceHolder="Client"
+           [(ngModel)]="clientId"
+           (ngModelChange)="clientChange($event)">
+  <nz-option *ngFor="let client of clients"
+             [nzLabel]="client.nom + '' + client.prenom"
+             [nzValue]="client.id"></nz-option>
+</nz-select>
+
+<nz-date-picker nzMode="year"
+                *ngIf="clientId > 0"
+                [(ngModel)]="annee"
+                (ngModelChange)="anneeChange($event)"></nz-date-picker>
+
+
+<br /><br />
+<div *ngIf="clientId > 0">
+
+  <nz-list nzGrid>
+    <div nz-row
+         [nzGutter]="16">
+      <div nz-col
+           [nzXXl]="8"
+           [nzXl]="4"
+           [nzLg]="6"
+           [nzMd]="6"
+           [nzSm]="12"
+           [nzXs]="24">
+        <nz-list-item>
+          <nz-card nzTitle="clientChiffreGlobale">{{clientChiffreGlobale}}</nz-card>
+        </nz-list-item>
+
+        <nz-list-item><nz-card nzTitle="clientChiffreAnnee"
+                   *ngIf="annee">{{clientChiffreAnnee}}</nz-card>
+        </nz-list-item>
+
+
+        <nz-list-item>
+          <nz-card nzTitle="clientReste">{{clientReste}}</nz-card>
+        </nz-list-item>
+
+      </div>
+    </div>
+  </nz-list>
+
+
+
+  <h2>Factures Payées</h2>
+  <nz-list nzGrid>
+    <div nz-row
+         [nzGutter]="16">
+      <div nz-col
+           [nzXXl]="8"
+           [nzXl]="4"
+           [nzLg]="6"
+           [nzMd]="6"
+           [nzSm]="12"
+           [nzXs]="24"
+           *ngFor="let item of clientListePayee">
+        <nz-list-item>
+          <nz-card [nzTitle]="item.note">{{item.date}}</nz-card>
+        </nz-list-item>
+      </div>
+    </div>
+  </nz-list>
+
+
+  <h2>Factures Non Payées</h2>
+  <nz-list nzGrid>
+    <div nz-row
+         [nzGutter]="16">
+      <div nz-col
+           [nzXXl]="8"
+           [nzXl]="4"
+           [nzLg]="6"
+           [nzMd]="6"
+           [nzSm]="12"
+           [nzXs]="24"
+           *ngFor="let item of clientListeNonPayee">
+        <nz-list-item>
+          <nz-card [nzTitle]="item.note">{{item.date}}</nz-card>
+        </nz-list-item>
+      </div>
+    </div>
+  </nz-list>
+
+</div>

@@ -1,0 +1,22 @@
+{
+  "/clients-service": {
+    "target": "http://localhost:9090",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/factures-service": {
+    "target": "http://localhost:9090",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/reglements-service": {
+    "target": "http://localhost:9090",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/produits-service": {
+    "target": "http://localhost:9090",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

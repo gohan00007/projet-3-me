@@ -1,0 +1,21 @@
+#================================
+# APPLICATION PROPRIETIES
+#================================
+server:
+  port: 8761
+spring:
+  application:    name: discovery-server
+ 
+#================================
+# SECURITY PROPRIETIES
+#================================  
+  security:    user:      name: eureka
+      password: password
+ 
+#================================
+# EUREKA PROPRIETIES
+#================================
+eureka:  client:    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      default-zone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:8761/eureka/

@@ -1,0 +1,107 @@
+<h1>Ajout d'une facture</h1>
+
+
+
+<button nz-button
+        nzType="primary"
+        (click)="modalVisibility()">Ajouter</button>
+
+<br />
+<br />
+<div nz-row>
+  <br />
+  <div nz-col
+       nzSpan="6">
+    <nz-select nzShowSearch
+               nzAllowClear
+               nzPlaceHolder="Client"
+               [(ngModel)]="facture.clientId">
+      <nz-option *ngFor="let client of clients"
+                 [nzLabel]="client.nom + '' + client.prenom"
+                 [nzValue]="client.id"></nz-option>
+    </nz-select>
+  </div>
+  <div nz-col
+       nzSpan="6">
+    <input nz-input
+           type="date"
+           placeholder="Nom"
+           [(ngModel)]="facture.date" />
+  </div>
+
+
+</div>
+<br />
+<div nz-row>
+  <div nz-col
+       nzSpan="12"><input type="text"
+           nz-input
+           [(ngModel)]="facture.note" /></div>
+</div>
+
+
+<table *ngIf="facture.lignes">
+  <tr>
+    <th>Produit</th>
+    <th>Quantite</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let ligne of facture.lignes">
+    <td>{{ ligne.produit.nom}}</td>
+    <td>{{ ligne.quantite }}</td>
+  </tr>
+</table>
+
+<nz-modal [(nzVisible)]="isVisible"
+          nzTitle="Ajout Ligne Facture"
+          (nzOnCancel)="handleCancel()">
+
+
+
+  <div *nzModalContent>
+
+    <nz-input-group [nzSize]="'large'">
+      <div nz-row
+           [nzGutter]="8">
+
+        <nz-select nzShowSearch
+                   nzAllowClear
+                   nzPlaceHolder="Produit"
+                   [(ngModel)]="current.produit"
+                   (ngModelChange)="produitChange($event)">
+          <nz-option *ngFor="let produit of produits"
+                     [nzLabel]="produit.nom"
+                     [nzValue]="produit"></nz-option>
+        </nz-select>
+
+      </div>
+      <br />
+
+      <div nz-row
+           [nzGutter]="8">
+        <input type="number"
+               nz-input
+               [(ngModel)]="current.quantite" />
+      </div>
+      <br />
+
+    </nz-input-group>
+
+
+  </div>
+  <div *nzModalFooter>
+    <button nz-button
+            nzType="default"
+            (click)="handleCancel()">Cancel</button>
+    <button nz-button
+            nzType="primary"
+            (click)="handleOk()"
+            [nzLoading]="isConfirmLoading">Submit</button>
+  </div>
+</nz-modal>
+
+<br />
+<br />
+<button nz-button
+        nzType="primary"
+        (click)="addFacture()">Submit</button>

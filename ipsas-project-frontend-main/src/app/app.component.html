@@ -1,0 +1,100 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar"
+            nzCollapsible
+            nzWidth="256px"
+            nzBreakpoint="md"
+            [(nzCollapsed)]="isCollapsed"
+            [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/"
+         target="_blank">
+        <img src="https://ipsas-ens.net/wp-content/themes/ipsas/images/ipsas/ipsas_logo.png"
+             alt="logo">
+        <h1>IPSAS Project</h1>
+      </a>
+    </div>
+    <ul nz-menu
+        nzTheme="dark"
+        nzMode="inline"
+        [nzInlineCollapsed]="isCollapsed">
+
+
+      <li nz-menu-item
+          nzIcon="dashboard"
+          nzMatchRouter>
+        <a routerLink="/dashboard"> <span nz-icon
+                nzType="dashboard"></span> Dashboard</a>
+      </li>
+
+      <li nz-menu-item
+          nzIcon="dashboard"
+          nzMatchRouter>
+        <a routerLink="/clients"> <span nz-icon
+                nzType="dashboard"></span> Clients</a>
+      </li>
+
+
+      <li nz-menu-item
+          nzIcon="dashboard"
+          nzMatchRouter>
+        <a routerLink="/marques"> <span nz-icon
+                nzType="dashboard"></span> Marques</a>
+      </li>
+
+
+      <li nz-menu-item
+          nzIcon="dashboard"
+          nzMatchRouter>
+        <a routerLink="/categories"> <span nz-icon
+                nzType="dashboard"></span> Categories</a>
+      </li>
+
+
+      <li nz-menu-item
+          nzIcon="dashboard"
+          nzMatchRouter>
+        <a routerLink="/taxes"> <span nz-icon
+                nzType="dashboard"></span> Taxes</a>
+      </li>
+
+      <li nz-menu-item
+          nzIcon="dashboard"
+          nzMatchRouter>
+        <a routerLink="/produits"> <span nz-icon
+                nzType="dashboard"></span> Produits</a>
+      </li>
+
+      <li nz-menu-item
+          nzIcon="dashboard"
+          nzMatchRouter>
+        <a routerLink="/factures"> <span nz-icon
+                nzType="dashboard"></span> Facture</a>
+      </li>
+
+      <li nz-menu-item
+          nzIcon="dashboard"
+          nzMatchRouter>
+        <a routerLink="/reglements"> <span nz-icon
+                nzType="dashboard"></span> Reglements</a>
+      </li>
+
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger"
+              (click)="isCollapsed = !isCollapsed">
+          <span class="trigger"
+                nz-icon
+                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
